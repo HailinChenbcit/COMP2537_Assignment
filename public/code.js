@@ -2,7 +2,7 @@ poke_id = null
 poke_name = null
 pokemons = []
 
-async function display_nine_picture() {
+async function display_all_picture() {
     result = ''
     for (i = 0; i < 4; i++) {
         result += "<div class='images_group'>"
@@ -32,8 +32,8 @@ async function display_nine_picture() {
 
 
 $(document).ready(function () {
-    display_nine_picture()
+    display_all_picture()
     $(".image_container").click(function () {
-
+        
     })
 })
