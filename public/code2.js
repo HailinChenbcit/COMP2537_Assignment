@@ -13,13 +13,15 @@ function call_ajax() {
     }
     $.ajax(
         {
-            // "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}`,
-            "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}/${nameIsSelected}/${typeIsSelected}`,
+            "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}`,
+            // "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}/${nameIsSelected}/${typeIsSelected}`,
             "type": 'GET',
             "success": function process(data) {
                 console.log(data)
                 poke_id = data['id']
                 poke_name = data['name']
+                poke_type = data["types"][0]["type"]["name"]
+                console.log(poke_type)
 
                 result = "<div class='image_container'>"
                 result += "ID: " + poke_id + "<br>"
@@ -28,7 +30,7 @@ function call_ajax() {
 
                 result += "Ability: " + data['abilities'][0]['ability']['name'] + "<br>"
 
-                result += "Weight: " + data['weight'] + "<br>"
+                result += "Type: " + poke_type + "<br>"
 
                 result += `<a href=${'#'}>
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
