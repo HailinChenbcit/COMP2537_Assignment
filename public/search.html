@@ -61,7 +61,7 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        main{
+        main {
             text-align: center;
             margin-top: 20px;
             margin-bottom: 20px;
@@ -85,14 +85,10 @@
             box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
         }
 
-        #result{
+        #result {
             padding: 100px 50px;
         }
 
-        .card {
-            border: 1px solid #75776d;
-            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-        }
     </style>
 </head>
 
@@ -114,10 +110,9 @@
     </nav>
 
     <main>
-        <select label="page_size" id="page_size">
-            <option value="name">Name</option>
-            <option value="id">ID</option>
-
+        <select id="searching">
+            <option value="name" id="search_name">Name</option>
+            <option value="type" id="search_type">Type</option>
         </select>
 
         <input type="text" name="poke_name" id="poke_name" placeholder="Enter Pokemon name">

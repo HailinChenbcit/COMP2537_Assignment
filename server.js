@@ -23,5 +23,13 @@ app.get('/profile/:id', function (req, res) {
     })
 })
 
+app.get('/search/:id', function (req, res) {
+    aList = []
+
+    if (req.params.appleIsChecked == "selected") aList.push("apple")
+    if (req.params.carrotIsChecked == "selected") aList.push("carrot")
+
+    
+})
 
 app.use(express.static('./public'));
