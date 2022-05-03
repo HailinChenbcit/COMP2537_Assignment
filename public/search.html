@@ -88,6 +88,9 @@
         #result {
             padding: 100px 50px;
         }
+        #search_bar{
+            text-align: center;
+        }
 
     </style>
 </head>
@@ -109,24 +112,19 @@
         </a>
     </nav>
 
-    <main>
-        <select id="searching">
-            <option value="name" id="search_name">Name</option>
-            <option value="type" id="search_type">Type</option>
-        </select>
+    <select name="poke_type" id="poke_type">
+        <option value="grass">Grass</option>
+        <option value="water">Water</option>
+    </select>
 
+    <div id="search_bar">
         <input type="text" name="poke_name" id="poke_name" placeholder="Enter Pokemon name">
-        <br>
         <br>
         <button id="search">Search</button>
         <br>
-        <div id="result">
+    </div>
 
-        </div>
-
-        <div id="history">
-
-        </div>
+    <main>
 
     </main>
     <footer>

@@ -1,5 +1,6 @@
 poke_id = null
 poke_name = null
+poke_type = null
 
 function call_ajax() {
     poke_name = $("#poke_name").val()
@@ -8,9 +9,11 @@ function call_ajax() {
     if (selected_option.val() == "name") {
         nameIsSelected = "selected"
     }
+
     if (selected_option.val() == "type") {
         typeIsSelected = "selected"
     }
+
     $.ajax(
         {
             "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}`,
@@ -46,7 +49,26 @@ function call_ajax() {
 }
 
 
-$(document).ready(function () {
-    $("#search").click(call_ajax)
-})
+function display(type_) {
+    $("main").empty()
+    poke_type = type_
+    for (i=0;i<100;i++){
+        $.ajax(
+            {
+                "url": `https://pokeapi.co/api/v2/type/${poke_type}`,
+                "type": 'GET',
+                "success": function process(data) {
+                    console.log(data)
+                }
+            }
+        )
+    }
+}
 
+
+$(document).ready(function () {
+    display($("#poke_type option:selected").val())
+    $("#poke_type").change(()=>{
+        poke_type = $("#poke_type option:selected").val()
+    })
+})

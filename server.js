@@ -7,28 +7,37 @@ app.listen(8000, function (err) {
     if (err) console.log(err);
 })
 
-// app.get('/', function (req, res) {
-//     res.send("GET request to homepage")
-// })
-
+const https = require('https')
 app.get('/profile/:id', function (req, res) {
     // req.params.id;
     // res.write(`${req.params.id}`);
-
     // res.write(`${req.params.id}`);
     // res.send()
 
-    res.render('profile.ejs', {
-        "id": req.params.id
+    const url = `https://pokeapi.co/api/v2/pokemon/${req.params.id}`
+    data = ''
+    https.get(url, function (https_res) {
+        https_res.on("data", function (chunk) {
+            data += chunk
+        })
+        https_res.on("end", function () {
+            // console.log(JSON.parse(data))
+            data = JSON.parse(data)
+
+            obj_hp = data.stats.filter((obj)=>{
+                return obj.stat.name == 'hp'
+            }).map((obj)=>{
+                return obj.base_stat
+            })
+
+            res.render('profile.ejs', {
+                "id": req.params.id,
+                'name': data.name,
+                "hp": obj_hp[0]
+            })
+        })
     })
 })
 
-// app.get('/search/:id', function (req, res) {
-//     aList = []
-
-//     if (req.params.appleIsChecked == "selected") aList.push("apple")
-//     if (req.params.carrotIsChecked == "selected") aList.push("carrot")
-
-// })
 
 app.use(express.static('./public'));

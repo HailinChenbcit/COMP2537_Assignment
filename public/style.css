@@ -78,6 +78,7 @@ nav a:active {
 }
 
 .image_container {
+    border: solid black 0.5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,8 +88,7 @@ nav a:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 5px;
 }
 
 @media screen and (max-width: 550px) {
