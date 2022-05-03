@@ -77,16 +77,18 @@ nav a:active {
     justify-content: center;
 }
 
-/* .image_container {
+.image_container {
     display: flex;
     align-items: center;
     justify-content: center;
-} */
+}
 
 .image_container a{
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 @media screen and (max-width: 550px) {

@@ -38,3 +38,4 @@ function call_ajax() {
 $(document).ready(function () {
     $("#search").click(call_ajax)
 })
+
