@@ -17,7 +17,6 @@ async function process(data) {
         poke_name = pokemons[j]
         poke_id = pokemon_ids[j]
         one_column = parseInt(pokemons.length / 3)
-        console.log(poke_id.length, one_column)
 
         await $.ajax(
             {
@@ -38,7 +37,7 @@ async function process(data) {
                 }
             }
         )
-        
+
     }
 
     $("main").html(result)
