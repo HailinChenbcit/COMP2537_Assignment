@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./style.css">
     <style>
         #search {
-            width: 10%;
+            width: 80px;
             padding: 3px 3px;
             text-align: center;
             font-size: 15px;
@@ -36,6 +36,8 @@
             margin: 7vh 0 5vh;
             grid-gap: 0 2vw;
             gap: 0 2vw;
+            align-items: center;
+            justify-content: center;
         }
 
         .filter_items {
@@ -49,6 +51,16 @@
             text-transform: uppercase;
         }
 
+        @media screen and (max-width: 550px) {
+            #filter_container {
+                flex-direction: row;
+                justify-content: stretch;
+            }
+            #filter_items{
+                flex-direction: row;
+                justify-content: stretch;
+            }
+        }
     </style>
 </head>
 
@@ -71,7 +83,9 @@
 
     <div class="filter_container">
         <div class="filter_items">
-            <div>Type</div>
+            <div>
+                <h3>Type</h3>
+            </div>
             <select name="poke_type" id="poke_type">
                 <option value="normal">normal</option>
                 <option value="fighting">fighting</option>
@@ -96,24 +110,33 @@
         </div>
 
         <div class="filter_items">
-            <div>Region</div>
-            <select>
+            <div>
+                <h3>Region</h3>
+            </div>
+            <select name="poke_region" id="poke_region">
                 <option value="kanto">kanto</option>
-                <option value="johto">johto</option>
-                <option value="hoenn">hoenn</option>
-                <option value="sinnoh">sinnoh</option>
-                <option value="unova">unova</option>
-                <option value="kalos">kalos</option>
-                <option value="alola">alola</option>
-                <option value="galar">galar</option>
+                <option value="updated-johto">johto</option>
+                <option value="updated-hoenn">hoenn</option>
+                <option value="extended-sinnoh">sinnoh</option>
+                <option value="updated-unova">unova</option>
+                <option value="alos-central">kalos</option>
+                <option value="updated-alola">alola</option>
             </select>
         </div>
 
         <div class="filter_items">
-            <label>Search</label>
+            <label>
+                <h3>Search by name</h3>
+            </label>
             <input type="text" name="poke_name" id="poke_name" placeholder="Enter Pokemon name">
         </div>
-        <button id="search">Search</button>
+
+        <div class="filter_items">
+            <label>
+                <h3>&nbsp</h3>
+            </label>
+            <button id="search">Search</button>
+         </div>
 
     </div>
 
