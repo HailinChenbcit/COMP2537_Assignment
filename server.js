@@ -9,11 +9,6 @@ app.listen(8000, function (err) {
 
 const https = require('https')
 app.get('/profile/:id', function (req, res) {
-    // req.params.id;
-    // res.write(`${req.params.id}`);
-    // res.write(`${req.params.id}`);
-    // res.send()
-
     const url = `https://pokeapi.co/api/v2/pokemon/${req.params.id}`
     data = ''
     https.get(url, function (https_res) {

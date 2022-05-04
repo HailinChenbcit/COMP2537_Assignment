@@ -4,9 +4,9 @@ pokemons = []
 
 async function display_all_picture() {
     result = ''
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 3; i++) {
         result += "<div class='images_group'>"
-        for (j = 0; j < 4; j++) {
+        for (j = 0; j < 3; j++) {
             poke_id = Math.floor((Math.random() * 900) + 1);
             await $.ajax(
                 {
@@ -17,14 +17,19 @@ async function display_all_picture() {
                         result += `<div class="image_container"> <a href='profile/${poke_id}' id= ${poke_id}>
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
                         </img>
-                        <h4>${poke_id}&nbsp</h4>
-                        <h4>${poke_name}</h4>
                         </a>
+                        <div class='card_header'>
+                        <div class='poke__number'>
+                        #${poke_id}
+                        </div>
+                        </div>
+                        <div>${poke_name}</div>
                         </div>`
                     }
                 }
             )
         }
+
         result += "</div>"
     }
     $("main").html(result)

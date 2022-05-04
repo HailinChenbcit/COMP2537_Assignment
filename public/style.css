@@ -1,7 +1,7 @@
-
 * {
     box-sizing: border-box;
 }
+
 body {
     margin: 0px;
     background-color: rgb(252, 245, 234);
@@ -19,7 +19,7 @@ nav {
 
 main {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto;
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -32,8 +32,7 @@ header img {
 
 main img {
     display: flex;
-    width: 40%;
-    /* justify-content: center; */
+    width: 45%;
 }
 
 #center {
@@ -72,19 +71,57 @@ nav a:active {
 
 .images_group {
     display: grid;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto auto;
     gap: 10px;
     justify-content: center;
 }
 
 .image_container {
-    border: solid black 0.5px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    margin: 2rem;
+    /* border: 15px solid var(--cardborder); */
+    border-radius: 1rem;
+    min-width: 220px;
+    height: 285px;
+    text-align: center;
+    /* box-shadow: 0 5px 25px 1px rgb(0 0 0 / 50%); */
+    box-shadow:
+        0 1.6px 1.6px rgba(0, 0, 0, 0.023),
+        0 3.8px 3.8px rgba(0, 0, 0, 0.034),
+        0 6.9px 6.9px rgba(0, 0, 0, 0.041),
+        0 11.4px 11.4px rgba(0, 0, 0, 0.049),
+        0 18.8px 18.8px rgba(0, 0, 0, 0.056),
+        0 32.8px 32.8px rgba(0, 0, 0, 0.067),
+        0 71px 71px rgba(0, 0, 0, 0.09);
+    transition: all 0.2s ease-in-out;
 }
 
-.image_container a{
+.image_container:hover {
+    transform: scale(1.1);
+  }
+
+.card__header {
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.image_container .poke__number {
+    border-radius: 1rem;
+    padding: 0.2rem 0.4rem;
+    font-weight: 400;
+    font-size: 35px;
+    color: var(--pokenumber);
+    font-family: 'Teko', sans-serif;
+}
+
+
+.image_container a {
     display: flex;
     align-items: center;
     justify-content: center;

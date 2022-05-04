@@ -29,7 +29,6 @@
             justify-content: start;
             border-top: #b9b9b9 solid;
             border-bottom: #b9b9b9 solid;
-
         }
 
         nav a {
@@ -88,10 +87,29 @@
         #result {
             padding: 100px 50px;
         }
-        #search_bar{
+
+        #search_bar {
             text-align: center;
         }
 
+        .filter_container {
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            margin: 7vh 0 5vh;
+            grid-gap: 0 2vw;
+            gap: 0 2vw;
+        }
+
+        .filter_items {
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-align-items: center;
+            align-items: center;
+            font-family: "barcadebrawl";
+            font-size: 12px;
+        }
     </style>
 </head>
 
@@ -112,14 +130,50 @@
         </a>
     </nav>
 
-    <select name="poke_type" id="poke_type">
-        <option value="grass">Grass</option>
-        <option value="water">Water</option>
-    </select>
+    <div class="filter_container">
+        <div class="filter_items">
+            <div>Type</div>
+            <select name="poke_type" id="poke_type">
+                <option value="normal">normal</option>
+                <option value="fighting">fighting</option>
+                <option value="flying">flying</option>
+                <option value="poison">poison</option>
+                <option value="ground">ground</option>
+                <option value="rock">rock</option>
+                <option value="bug">bug</option>
+                <option value="ghost">ghost</option>
+                <option value="steel">steel</option>
+                <option value="fire">fire</option>
+                <option value="water">water</option>
+                <option value="grass">grass</option>
+                <option value="electric">electric</option>
+                <option value="psychic">psychic</option>
+                <option value="ice">ice</option>
+                <option value="dragon">dragon</option>
+                <option value="dark">dark</option>
+                <option value="fairy">fairy</option>
+                <option value="shadow">shadow</option>
+            </select>
+        </div>
+
+        <div class="filter_items">
+            <div>Sort by</div>
+            <select>
+                <option value="ID">ID</option>
+                <option value="Name">Name</option>
+            </select>
+        </div>
+
+        <div class="filter_items">
+            <label>Search</label>
+            <input type="text" name="poke_name" id="poke_name" placeholder="Enter Pokemon name">
+        </div>
+
+
+
+    </div>
 
     <div id="search_bar">
-        <input type="text" name="poke_name" id="poke_name" placeholder="Enter Pokemon name">
-        <br>
         <button id="search">Search</button>
         <br>
     </div>
