@@ -87,7 +87,7 @@ async function process_region(data) {
 
 
 function display_by_type() {
-    var selected_type= $("#poke_type option:selected").val()
+    var selected_type = $("#poke_type option:selected").val()
     $.ajax(
         {
             "url": `https://pokeapi.co/api/v2/type/${selected_type}`,
@@ -118,7 +118,31 @@ $(document).ready(function () {
     $("#poke_region").change(() => {
         display_by_region()
     })
-    $("#search").click(()=>{
-
+    $("#search").click(() => {
+        poke_name = $("#poke_name").val()
+        $.ajax(
+            {
+                "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}`,
+                "type": 'GET',
+                "success": function process(data) {
+                    poke_name = data.name
+                    poke_id = data.id
+                    result = ''
+                    result += `<div class="image_container"> <a href='profile/${poke_id}' id= ${poke_id}>
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
+                        </img>
+                        </a>
+                        <div class='card_header'>
+                        <div class='poke__number'>
+                        #${poke_id}
+                        </div>
+                        </div>
+                        <div>${poke_name}</div>
+                        </div>`
+                    result += "</div>"
+                }
+            }
+        )
+        $("main").html(result)
     })
 })
