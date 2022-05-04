@@ -38,7 +38,4 @@ async function display_all_picture() {
 
 $(document).ready(function () {
     display_all_picture()
-    $(".image_container").click(function () {
-        
-    })
 })

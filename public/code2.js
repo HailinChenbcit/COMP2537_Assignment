@@ -2,73 +2,65 @@ poke_id = null
 poke_name = null
 poke_type = null
 
-function call_ajax() {
-    poke_name = $("#poke_name").val()
-    var selected_option = $("#searching option:selected")
-
-    if (selected_option.val() == "name") {
-        nameIsSelected = "selected"
+async function process(data) {
+    pokemons = []
+    pokemon_ids = []
+    for (i = 0; i < data["pokemon"].length; i++) {
+        pokemons.push(data["pokemon"][i]["pokemon"]["name"])
+        id = data["pokemon"][i]["pokemon"]["url"]
+        pokemon_ids.push(id.substr(34).slice(0, -1))
     }
 
-    if (selected_option.val() == "type") {
-        typeIsSelected = "selected"
-    }
+    result = ""
 
+    for (j = 0; j < pokemons.length; j++) {
+        poke_name = pokemons[j]
+        poke_id = pokemon_ids[j]
+        one_column = parseInt(pokemons.length / 3)
+        console.log(poke_id.length, one_column)
+
+        if (j % one_column == 0) result += "<div class='images_group'>"
+
+        await $.ajax(
+            {
+                "url": `https://pokeapi.co/api/v2/pokemon/${poke_id}`,
+                "type": 'GET',
+                "success": function process() {
+                    result += `<div class="image_container"> <a href='profile/${poke_id}' id= ${poke_id}>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
+                    </img>
+                    </a>
+                    <div class='card_header'>
+                    <div class='poke__number'>
+                    #${poke_id}
+                    </div>
+                    </div>
+                    <div>${poke_name}</div>
+                    </div>`
+                }
+            }
+        )
+
+        if (j % one_column == 1) result += "</div>"
+    }
+    $("main").html(result)
+}
+
+
+function display() {
+    var selected_option = $("#poke_type option:selected").val()
     $.ajax(
         {
-            "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}`,
-            // "url": `https://pokeapi.co/api/v2/pokemon/${poke_name}/${nameIsSelected}/${typeIsSelected}`,
+            "url": `https://pokeapi.co/api/v2/type/${selected_option}`,
             "type": 'GET',
-            "success": function process(data) {
-                console.log(data)
-                poke_id = data['id']
-                poke_name = data['name']
-                poke_type = data["types"][0]["type"]["name"]
-                console.log(poke_type)
-
-                result = "<div class='image_container'>"
-                result += "ID: " + poke_id + "<br>"
-
-                result += "Name: " + poke_name + "<br>"
-
-                result += "Ability: " + data['abilities'][0]['ability']['name'] + "<br>"
-
-                result += "Type: " + poke_type + "<br>"
-
-                result += `<a href=${'#'}>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
-                </img>
-                </a>`
-
-                result += "</div>"
-
-                $("#result").html(result)
-            }
+            "success": process
         }
     )
 }
 
-
-function display(type_) {
-    $("main").empty()
-    poke_type = type_
-    for (i=0;i<100;i++){
-        $.ajax(
-            {
-                "url": `https://pokeapi.co/api/v2/type/${poke_type}`,
-                "type": 'GET',
-                "success": function process(data) {
-                    console.log(data)
-                }
-            }
-        )
-    }
-}
-
-
 $(document).ready(function () {
-    display($("#poke_type option:selected").val())
-    $("#poke_type").change(()=>{
-        poke_type = $("#poke_type option:selected").val()
+    display()
+    $("#poke_type").change(() => {
+        display()
     })
 })
