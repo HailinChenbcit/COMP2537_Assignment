@@ -19,8 +19,6 @@ async function process(data) {
         one_column = parseInt(pokemons.length / 3)
         console.log(poke_id.length, one_column)
 
-        if (j % one_column == 0) result += "<div class='images_group'>"
-
         await $.ajax(
             {
                 "url": `https://pokeapi.co/api/v2/pokemon/${poke_id}`,
@@ -40,9 +38,9 @@ async function process(data) {
                 }
             }
         )
-
-        if (j % one_column == 1) result += "</div>"
+        
     }
+
     $("main").html(result)
 }
 
