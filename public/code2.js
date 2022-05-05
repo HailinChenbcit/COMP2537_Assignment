@@ -2,11 +2,12 @@ poke_id = null
 poke_name = null
 poke_type = null
 page_number = null
-g_data = null
+g_data_type = null
+g_data_region = null
 
 
-async function paginate(page_number) {
-    let total_pages = Math.ceil(g_data.pokemon.length / 9)
+async function paginate_type(page_number) {
+    let total_pages = Math.ceil(g_data_type.pokemon.length / 9)
     // display page buttons
     var html = ""
     for (cur_page = 0; cur_page < total_pages; cur_page++) {
@@ -18,9 +19,9 @@ async function paginate(page_number) {
 
     pokemons = []
     pokemon_ids = []
-    for (i = 0; i < g_data["pokemon"].length; i++) {
-        pokemons.push(g_data["pokemon"][i]["pokemon"]["name"])
-        id = g_data["pokemon"][i]["pokemon"]["url"]
+    for (i = 0; i < g_data_type["pokemon"].length; i++) {
+        pokemons.push(g_data_type["pokemon"][i]["pokemon"]["name"])
+        id = g_data_type["pokemon"][i]["pokemon"]["url"]
         pokemon_ids.push(id.substr(34).slice(0, -1))
     }
 
@@ -54,28 +55,30 @@ async function paginate(page_number) {
 
 }
 
+async function paginate_region(page_number) {
+    let total_pages = Math.ceil(g_data_region.pokemon_entries.length / 9)
+    // display page buttons
+    var html = ""
+    for (cur_page = 0; cur_page < total_pages; cur_page++) {
+        html += `<span><button id="${cur_page + 1}">${cur_page + 1}</button></span>`
+        $("#page_numbers").html(html)
+    }
 
-function process_type(data) {
-    g_data = data
-    paginate(1)
-}
+    html = ""
 
-
-async function process_region(data) {
     pokemons = []
     pokemon_ids = []
-    for (i = 0; i < data["pokemon_entries"].length; i++) {
-        pokemons.push(data["pokemon_entries"][i]["pokemon_species"]["name"])
-        id = data["pokemon_entries"][i]["pokemon_species"]["url"]
+    for (i = 0; i < g_data_region["pokemon_entries"].length; i++) {
+        pokemons.push(g_data_region["pokemon_entries"][i]["pokemon_species"]["name"])
+        id = g_data_region["pokemon_entries"][i]["pokemon_species"]["url"]
         pokemon_ids.push(id.substr(42).slice(0, -1))
     }
 
     result = ""
 
-    for (j = 0; j < pokemons.length; j++) {
-        poke_name = pokemons[j]
-        poke_id = pokemon_ids[j]
-        one_column = parseInt(pokemons.length / 3)
+    for (i = (page_number - 1) * 9; i < page_number * 9; i++) {
+        poke_name = pokemons[i]
+        poke_id = pokemon_ids[i]
 
         await $.ajax(
             {
@@ -100,6 +103,19 @@ async function process_region(data) {
     }
     $("main").html(result)
 }
+
+
+function process_type(data) {
+    g_data_type = data
+    paginate_type(1)
+}
+
+
+async function process_region(data) {
+    g_data_region = data
+    paginate_region(1)
+}
+    
 
 
 function display_by_type() {
@@ -168,22 +184,24 @@ $(document).ready(function () {
     // display prev/next button and select page number
     $("#page_numbers").on("click", "button", (function () {
         page_number = this.id
-        paginate(page_number)
-        console.log(page_number)
+        paginate_type(page_number)
+        paginate_region(page_number)
     }))
 
     // Prev / Next button
     $("#prev").click(() => {
         if (page_number > 1) {
             page_number--;
-            paginate(page_number)
+            paginate_type(page_number)
+            paginate_region(page_number)
         }
     })
 
     $("#next").click(() => {
         if (page_number * 9 < g_data.pokemon.length) {
             page_number++;
-            paginate(page_number)
+            paginate_type(page_number)
+            paginate_region(page_number)
         }
     })
 })
