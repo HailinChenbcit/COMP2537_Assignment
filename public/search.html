@@ -31,7 +31,6 @@
 
         .filter_container {
             display: flex;
-            -webkit-flex-direction: row;
             flex-direction: row;
             margin: 7vh 0 5vh;
             grid-gap: 0 2vw;
@@ -51,13 +50,37 @@
             text-transform: uppercase;
         }
 
+        .pagination {
+            text-align: center;
+        }
+
+        .pagination a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .pagination a:hover{
+            color: aquamarine;
+        }
+
+        #page_numbers span{
+            border-radius: 8px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            margin: 0 1.2px;
+        }
+
         @media screen and (max-width: 550px) {
-            #filter_container {
-                flex-direction: row;
+            .filter_container {
+                flex-direction: column !important;
+                margin: 7vh 0 5vh;
+                grid-gap: 0 2vw;
+                gap: 0 2vw;
+                align-items: center;
+                justify-content: center;
             }
 
-            #filter_items {
-                flex-direction: column;
+            .filter_items {
+                flex-direction: row;
             }
 
         }
@@ -146,7 +169,9 @@
 
     <div class="pagination">
         <a href="prev">&laquo;</a>
-
+        <span id="page_numbers">
+            
+        </span>
         <a href="next">&raquo;</a>
     </div>
 
