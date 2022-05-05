@@ -1,8 +1,15 @@
 poke_id = null
 poke_name = null
 poke_type = null
+g_data = null
+
+function pagination(g_data){
+    console.log(g_data)
+    
+}
 
 async function process_type(data) {
+    g_data = data
     pokemons = []
     pokemon_ids = []
     for (i = 0; i < data["pokemon"].length; i++) {

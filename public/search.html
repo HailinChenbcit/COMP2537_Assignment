@@ -54,12 +54,12 @@
         @media screen and (max-width: 550px) {
             #filter_container {
                 flex-direction: row;
-                justify-content: stretch;
             }
-            #filter_items{
-                flex-direction: row;
-                justify-content: stretch;
+
+            #filter_items {
+                flex-direction: column;
             }
+
         }
     </style>
 </head>
@@ -136,13 +136,20 @@
                 <h3>&nbsp</h3>
             </label>
             <button id="search">Search</button>
-         </div>
+        </div>
 
     </div>
 
     <main>
 
     </main>
+
+    <div class="pagination">
+        <a href="prev">&laquo;</a>
+
+        <a href="next">&raquo;</a>
+    </div>
+
     <footer>
         <h5>
             Copyright © Adam Website 2022

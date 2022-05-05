@@ -18,7 +18,6 @@ app.get('/profile/:id', function (req, res) {
         https_res.on("end", function () {
             // console.log(JSON.parse(data))
             data = JSON.parse(data)
-            console.log(data)
             obj_hp = data.stats.filter((obj)=>{
                 return obj.stat.name == 'hp'
             }).map((obj)=>{
