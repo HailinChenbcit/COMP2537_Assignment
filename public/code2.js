@@ -169,17 +169,19 @@ $(document).ready(function () {
     $("#page_numbers").on("click", "button", (function () {
         page_number = this.id
         paginate(page_number)
+        console.log(page_number)
     }))
 
-    // Prev/ Next button
-    $("#prev").on("click", () => {
+    // Prev / Next button
+    $("#prev").click(() => {
         if (page_number > 1) {
             page_number--;
             paginate(page_number)
         }
     })
-    $("#next").on("click", () => {
-        if (page_number * 9 < g_data.results.length) {
+
+    $("#next").click(() => {
+        if (page_number * 9 < g_data.pokemon.length) {
             page_number++;
             paginate(page_number)
         }
