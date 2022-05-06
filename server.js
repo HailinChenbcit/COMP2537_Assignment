@@ -36,6 +36,11 @@ app.get('/profile/:id', function (req, res) {
                 return obj.base_stat
             })
 
+            obj_abilities = []
+            for (i =0; i<data.abilities.length;i++) {
+                obj_abilities.push(data.abilities[i].ability.name)
+            }
+
             res.render('profile.ejs', {
                 "id": req.params.id,
                 'name': data.name,
@@ -44,6 +49,7 @@ app.get('/profile/:id', function (req, res) {
                 "height": data.height,
                 "attack": obj_atk[0],
                 "defense": obj_defense[0],
+                "abilities": obj_abilities,
             })
         })
     })
