@@ -3,7 +3,26 @@ poke_name = null
 poke_type = null
 page_number = null
 g_data_type = null
-
+const colors = {
+    fire: '#FDDFDF',
+    grass: '#DEFDE0',
+    electric: '#FCF7DE',
+    water: '#DEF3FD',
+    ground: '#f4e7da',
+    rock: '#d5d5d4',
+    fairy: '#fceaff',
+    poison: '#98d7a5',
+    bug: '#f8d5a3',
+    dragon: '#97b3e6',
+    psychic: '#eceda1',
+    flying: '#F5F5F5',
+    fighting: '#E6E0D4',
+    normal: '#F5F5F5',
+    ice: "#37f0e8",
+    dark: "#370000",
+    steel: "226945",
+    shadow: "#e6edee",
+}
 
 async function paginate_type(page_number) {
     let total_pages = Math.ceil(g_data_type.pokemon.length / 9)
@@ -34,8 +53,11 @@ async function paginate_type(page_number) {
             {
                 "url": `https://pokeapi.co/api/v2/pokemon/${poke_id}`,
                 "type": 'GET',
-                "success": function process() {
-                    result += `<div class="image_container"> <a href='profile/${poke_id}' id= ${poke_id}>
+                "success": function process(data) {
+                    allowed = data.types[0].type.name
+                    obj_colors = Object.keys(colors).filter(key => allowed.includes(key))
+                    color_code = colors[obj_colors]
+                    result += `<div class="image_container" style="background-color:${color_code};"> <a href='profile/${poke_id}' id= ${poke_id}>
                             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
                             </img>
                             </a>
@@ -80,8 +102,11 @@ async function process_region(g_data_region) {
             {
                 "url": `https://pokeapi.co/api/v2/pokemon/${poke_id}`,
                 "type": 'GET',
-                "success": function process() {
-                    result += `<div class="image_container"> <a href='profile/${poke_id}' id= ${poke_id}>
+                "success": function process(data) {
+                    allowed = data.types[0].type.name
+                    obj_colors = Object.keys(colors).filter(key => allowed.includes(key))
+                    color_code = colors[obj_colors]
+                    result += `<div class="image_container" style="background-color:${color_code};"> <a href='profile/${poke_id}' id= ${poke_id}>
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
                     </img>
                     </a>
@@ -189,10 +214,10 @@ $(document).ready(function () {
         }
     })
 
-    $("#poke_name").keypress(function(event){
+    $("#poke_name").keypress(function (event) {
         var inputValue = event.charCode;
-        if(!(inputValue >= 65 && inputValue <= 120) && (inputValue != 32 && inputValue != 0)){
+        if (!(inputValue >= 65 && inputValue <= 120) && (inputValue != 32 && inputValue != 0)) {
             event.preventDefault();
         }
-     });
+    });
 })

@@ -2,6 +2,27 @@ poke_id = null
 poke_name = null
 pokemons = []
 
+const colors = {
+    fire: '#FDDFDF',
+    grass: '#DEFDE0', 
+    electric: '#FCF7DE', 
+    water: '#DEF3FD', 
+    ground: '#f4e7da', 
+    rock: '#d5d5d4', 
+    fairy: '#fceaff', 
+    poison: '#98d7a5', 
+    bug: '#f8d5a3', 
+    dragon: '#97b3e6', 
+    psychic: '#eceda1', 
+    flying: '#F5F5F5', 
+    fighting: '#E6E0D4', 
+    normal: '#F5F5F5',
+    ice:"#37f0e8",
+    dark:"#370000",
+    steel:"226945",
+    shadow:"#e6edee",
+}
+
 async function display_all_picture() {
     result = ''
     for (i = 0; i < 3; i++) {
@@ -13,8 +34,11 @@ async function display_all_picture() {
                     "url": `https://pokeapi.co/api/v2/pokemon/${poke_id}`,
                     "type": 'GET',
                     "success": function process(data) {
+                        allowed = data.types[0].type.name
+                        obj_colors = Object.keys(colors).filter(key => allowed.includes(key))
+                        color_code = colors[obj_colors]
                         poke_name = data.name
-                        result += `<div class="image_container"> <a href='profile/${poke_id}' id= ${poke_id}>
+                        result += `<div class="image_container" style="background-color:${color_code};"> <a href='profile/${poke_id}' id= ${poke_id}>
                         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke_id}.png">
                         </img>
                         </a>
