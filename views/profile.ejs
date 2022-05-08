@@ -51,7 +51,7 @@
             justify-content: start;
         }
 
-        .data_container ul {
+        #all_stats ul {
             list-style-type: none;
         }
 
@@ -101,13 +101,17 @@
 
     <div class="info_container">
         <div class="img_container">
-            <div> # <%= id %>
+            <div>
+                <h2># <%= id %>
+                </h2>
             </div>
 
             <br>
 
             <div>
-                <h3><%= name %></h3>
+                <h3>
+                    <%= name %>
+                </h3>
             </div>
 
             <div>
@@ -118,7 +122,7 @@
         </div>
 
         <div class="data_container">
-            <div>
+            <div id="all_stats">
                 STATS
                 <ul>
                     <li>
@@ -152,7 +156,16 @@
                             <%= abilities[i] %>
                         </li>
                         <% } %>
-                            <li></li>
+                </ul>
+            </div>
+            <div>
+                TYPE
+                <ul>
+                    <% for (var i=0; i < types.length; i++) { %>
+                        <li>
+                            <%= types[i] %>
+                        </li>
+                        <% } %>
                 </ul>
             </div>
         </div>
@@ -164,4 +177,5 @@
         Copyright © Adam Website 2022
     </h5>
 </footer>
+
 </html>

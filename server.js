@@ -41,6 +41,13 @@ app.get('/profile/:id', function (req, res) {
                 obj_abilities.push(data.abilities[i].ability.name)
             }
 
+            obj_types = []
+            for (i =0; i<data.types.length;i++) {
+                obj_types.push(data.types[i].type.name)
+            }
+
+            console.log(obj_types)
+
             res.render('profile.ejs', {
                 "id": req.params.id,
                 'name': data.name,
@@ -50,6 +57,7 @@ app.get('/profile/:id', function (req, res) {
                 "attack": obj_atk[0],
                 "defense": obj_defense[0],
                 "abilities": obj_abilities,
+                "types": obj_types,
             })
         })
     })
