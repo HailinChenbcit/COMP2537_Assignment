@@ -3,11 +3,14 @@ const app = express()
 app.set('view engine', 'ejs')
 
 
-app.listen(process.env.port || 8000, function (err) {
+app.listen(process.env.PORT || 8000, function (err) {
     if (err) console.log(err);
 })
 
 const https = require('https')
+
+app.get("/")
+
 app.get('/profile/:id', function (req, res) {
     const url = `https://pokeapi.co/api/v2/pokemon/${req.params.id}`
     data = ''
