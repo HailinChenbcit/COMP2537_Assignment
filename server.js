@@ -3,7 +3,7 @@ const app = express()
 app.set('view engine', 'ejs')
 
 
-app.listen(8000, function (err) {
+app.listen(process.env.port || 8000, function (err) {
     if (err) console.log(err);
 })
 
